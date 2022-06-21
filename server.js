@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { siteData } from "./src/models.js";
 
 const app = express();
@@ -6,6 +7,7 @@ const port = process.env.PORT || 3007;
 const fullURL = `http://localhost:${port}`;
 
 app.use(express.static("public"));
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send(`
