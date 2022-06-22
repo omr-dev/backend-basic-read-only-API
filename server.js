@@ -48,7 +48,12 @@ app.get("/", (req, res) => {
 
     <ul>
     ${Object.keys(siteData)
-      .map((key) => `<li><a href="${baseURL}:${port}/${key}">${key}</a></li>`)
+      .map(
+        (key) =>
+          `<li><a href="${baseURL}${
+            mode === "development" ? ":" + port : ""
+          }/${key}">${key}</a></li>`
+      )
       .join("")}
         
     </ul>
