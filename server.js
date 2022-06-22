@@ -1,10 +1,14 @@
 import express from "express";
 import cors from "cors";
+import dotenv from "dotenv";
 import { siteData } from "./src/models.js";
 
+dotenv.config();
+const mode = process.env.MODE;
+const baseURL = process.env.BASE_URL;
+const port = process.env.PORT;
+
 const app = express();
-const port = process.env.PORT || 3007;
-const fullURL = `http://localhost:${port}`;
 
 app.use(express.static("public"));
 app.use(cors());
@@ -44,11 +48,9 @@ app.get("/", (req, res) => {
 
     <ul>
     ${Object.keys(siteData)
-      .map((key) => `<li><a href="${fullURL}/${key}">${key}</a></li>`)
+      .map((key) => `<li><a href="${baseURL}:${port}/${key}">${key}</a></li>`)
       .join("")}
-        <li>
-            <a href="http://localhost:3007/books">Books</a>
-        </li>
+        
     </ul>
 
 </body>
